@@ -4,6 +4,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
+using System;
 
 namespace Data
 {
@@ -13,7 +14,7 @@ namespace Data
         {
             sessionFactory = Fluently.Configure()
                 .Database(SQLiteConfiguration
-                .Standard.ConnectionString(@"Data Source=C:\Users\Charles\source\repos\SampleMVVMSolution\data.db;Version=3"))
+                .Standard.ConnectionString($@"Data Source={AppDomain.CurrentDomain.BaseDirectory}\data.db;Version=3"))
                 .Mappings(x => x.FluentMappings.AddFromAssemblyOf<AddressMap>())
                 .ExposeConfiguration(BuildSchema)
                 .BuildSessionFactory();

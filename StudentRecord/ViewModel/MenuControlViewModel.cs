@@ -17,8 +17,20 @@ namespace StudentRecord.ViewModel
 
             ExitCommnad = new DelegateCommand(ExitAction);
             NewRecordCommnad = new DelegateCommand(NewRecordAction);
+            AddressCommand = new DelegateCommand(AddressCommandAction);
             ShowAddressViewCommand = new DelegateCommand(ShowAddressesAction);
             ShowStudentViewCommand = new DelegateCommand(ShowStudentsAction);
+        }
+
+        private void AddressCommandAction()
+        {
+            var name = nameof(AddressControl);
+            var view = regionManager.Regions[RegionNames.ContentRegion].GetView(name);
+            if (view == null)
+            {
+                regionManager.Regions[RegionNames.ContentRegion].Add(unityContainer.Resolve<AddressControl>(), name);
+            }
+            regionManager.RequestNavigate(RegionNames.ContentRegion, name);
         }
 
         private void ExitAction()
@@ -42,16 +54,18 @@ namespace StudentRecord.ViewModel
 
         private void NewRecordAction()
         {
-            var view = regionManager.Regions[RegionNames.ContentRegion].GetView(nameof(DataEntry));
+            var viewName = nameof(StudentDataEntry);
+            var view = regionManager.Regions[RegionNames.ContentRegion].GetView(viewName);
             if (view == null)
             {
-                regionManager.Regions[RegionNames.ContentRegion].Add(unityContainer.Resolve<DataEntry>(), nameof(DataEntry));
+                regionManager.Regions[RegionNames.ContentRegion].Add(unityContainer.Resolve<StudentDataEntry>(), viewName);
             }
-            regionManager.RequestNavigate(RegionNames.ContentRegion, nameof(DataEntry));
+            regionManager.RequestNavigate(RegionNames.ContentRegion, viewName);
         }
 
         public DelegateCommand ExitCommnad { get; set; }
         public DelegateCommand NewRecordCommnad { get; set; }
+        public DelegateCommand AddressCommand { get; set; }
         public DelegateCommand ShowAddressViewCommand { get; set; }
         public DelegateCommand ShowStudentViewCommand { get; set; }
 

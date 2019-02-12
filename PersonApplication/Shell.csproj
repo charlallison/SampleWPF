@@ -143,6 +143,10 @@
       <Project>{fababad2-48a6-4466-a316-745053c7042d}</Project>
       <Name>Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{F660729A-2AAF-43E3-902E-16E36DFE7FFE}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{462178c7-7ede-4d7f-b966-a4c82c876c14}</Project>
       <Name>Shared</Name>

@@ -96,12 +96,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Utils\TextToBrushConverter.cs" />
     <Compile Include="Validator\PersonValidator.cs" />
-    <Compile Include="ViewModel\DataEntryViewModel.cs" />
+    <Compile Include="ViewModel\AddressControlViewModel.cs" />
+    <Compile Include="ViewModel\StudentDataViewModel.cs" />
     <Compile Include="ViewModel\MenuControlViewModel.cs" />
-    <Compile Include="View\DataEntry.xaml.cs">
-      <DependentUpon>DataEntry.xaml</DependentUpon>
+    <Compile Include="View\AddressControl.xaml.cs">
+      <DependentUpon>AddressControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StudentDataControl.xaml.cs">
+      <DependentUpon>StudentDataControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuControl.xaml.cs">
       <DependentUpon>MenuControl.xaml</DependentUpon>
@@ -118,7 +121,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\DataEntry.xaml">
+    <Page Include="View\AddressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StudentDataControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,7 +6,7 @@ namespace Data.Repository
 {
     public class Repository<T>
     {
-        public Repository()
+        internal Repository()
         {
             Session = NhibernateConfiguration.GetSession();
         }

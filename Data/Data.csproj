@@ -83,7 +83,6 @@
     <Compile Include="NhibernateConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider.cs" />
-    <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup>

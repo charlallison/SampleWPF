@@ -7,6 +7,7 @@
     <Menu>
         <MenuItem Header="File">
             <MenuItem Header="New" Command="{Binding NewRecordCommnad}" />
+            <MenuItem Header="Address" Command="{Binding AddressCommand}" />
             <MenuItem Header="Exit" Command="{Binding ExitCommnad}" />
         </MenuItem>
         <MenuItem Header="Records">

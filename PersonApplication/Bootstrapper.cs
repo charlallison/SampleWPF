@@ -30,8 +30,10 @@ namespace PersonApplication
 
         protected override void ConfigureContainer()
         {
+            Provider provider = new Provider();
             base.ConfigureContainer();
-            new Provider();
+            Container.RegisterInstance(provider.GetAddressRepository(), new ContainerControlledLifetimeManager());
+            Container.RegisterInstance(provider.GetPersonRepository(), new ContainerControlledLifetimeManager());
         }
     }
 }

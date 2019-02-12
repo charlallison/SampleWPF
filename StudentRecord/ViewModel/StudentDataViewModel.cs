@@ -8,38 +8,43 @@ using System.ComponentModel;
 using System;
 using System.Collections.Generic;
 using FluentValidation.Results;
+using Microsoft.Practices.ServiceLocation;
+using System.Reflection;
 
 namespace StudentRecord.ViewModel
 {
-    public class DataEntryViewModel : BindableBase, IDataErrorInfo
+    public class StudentDataViewModel : BindableBase, IDataErrorInfo
     {
-        public DataEntryViewModel()
+        public StudentDataViewModel()
         {
             Person = new Person();
             rules = new PersonValidator();
-            Addresses = new List<Address>(new Repository<Address>().GetAll());
+            Addresses = new List<Address>(AddressRepository.GetAll());
             SaveCommand = new DelegateCommand(SaveAction);
-            People = new List<Person>(new Repository<Person>().GetAll());
+            People = new List<Person>(StudentRepository.GetAll());
+
+            
         }
 
         private void SaveAction()
         {
-             _result = rules.Validate(Person);
+            _result = rules.Validate(Person);
             DisplayedError = Error;
 
             if (_result.IsValid)
             {
-                
+
                 if (Person.Id > 0)
                 {
-                    repository.Update(Person);
+                    StudentRepository.Update(Person);
                 }
                 else
                 {
-                    repository.Add(Person);
+                    StudentRepository.Add(Person);
                 }
                 DisplayedError = null;
-                repository.Save();
+                StudentRepository.Save();
+                Person = new Person();
             }
         }
 
@@ -89,8 +94,14 @@ namespace StudentRecord.ViewModel
 
         private ValidationResult _result;
         private PersonValidator rules;
-        private Repository<Address> addRepo = new Repository<Address>();
-        private Repository<Person> repository = new Repository<Person>();
+
+        Repository<Address> AddressRepository {
+            get { return ServiceLocator.Current.GetInstance<Repository<Address>>(); }
+        }
+
+        Repository<Person> StudentRepository {
+            get { return ServiceLocator.Current.GetInstance<Repository<Person>>(); }
+        }
 
     }
 }

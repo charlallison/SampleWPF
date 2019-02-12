@@ -5,9 +5,9 @@ namespace StudentRecord.View
     /// <summary>
     /// Interaction logic for DataEntry.xaml
     /// </summary>
-    public partial class DataEntry
+    public partial class StudentDataEntry
     {
-        public DataEntry(DataEntryViewModel model)
+        public StudentDataEntry(StudentDataViewModel model)
         {
             InitializeComponent();
             DataContext = model;

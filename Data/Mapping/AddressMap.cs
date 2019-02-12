@@ -7,7 +7,7 @@ namespace Data.Mapping
     {
         public AddressMap()
         {
-            Id(x => x.Id);
+            Id(x => x.Id).GeneratedBy.Increment();
             Map(x => x.Street);
             Map(x => x.Number);
         }
