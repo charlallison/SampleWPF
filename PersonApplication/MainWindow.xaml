@@ -1,0 +1,15 @@
+﻿<Window x:Class="PersonApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:shared="clr-namespace:Shared;assembly=Shared"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:local="clr-namespace:PersonApplication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Margin="5">
+    <DockPanel LastChildFill="True">
+        <ContentControl DockPanel.Dock="Top" prism:RegionManager.RegionName="{x:Static shared:RegionNames.MenuRegion}" />
+        <ContentControl Background="AliceBlue" prism:RegionManager.RegionName="{x:Static shared:RegionNames.ContentRegion}" />
+    </DockPanel>
+</Window>
