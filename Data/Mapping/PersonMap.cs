@@ -13,9 +13,11 @@ namespace Data.Mapping
         public PersonMap()
         {
             Id(x => x.Id).GeneratedBy.Increment();
+
             Map(x => x.FirstName);
             Map(x => x.LastName);
             Map(x => x.Email);
+
             References(x => x.Address);
         }
     }

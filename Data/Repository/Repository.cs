@@ -19,6 +19,14 @@ namespace Data.Repository
             }
         }
 
+        public void AddNewOrExisiting(T item)
+        {
+            using (var transaction = Session.BeginTransaction())
+            {
+                Session.SaveOrUpdate(item);
+            }
+        }
+
         public void Delete(T item)
         {
             using (var transaction = Session.BeginTransaction())

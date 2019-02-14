@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using FluentValidation.Results;
 using Microsoft.Practices.ServiceLocation;
-using System.Reflection;
+using System.Collections.ObjectModel;
 
 namespace StudentRecord.ViewModel
 {
@@ -19,11 +19,9 @@ namespace StudentRecord.ViewModel
         {
             Person = new Person();
             rules = new PersonValidator();
-            Addresses = new List<Address>(AddressRepository.GetAll());
+            Addresses = new ObservableCollection<Address>(AddressRepository.GetAll());
             SaveCommand = new DelegateCommand(SaveAction);
-            People = new List<Person>(StudentRepository.GetAll());
-
-            
+            People = new ObservableCollection<Person>(StudentRepository.GetAll());
         }
 
         private void SaveAction()
@@ -44,6 +42,7 @@ namespace StudentRecord.ViewModel
                 }
                 DisplayedError = null;
                 StudentRepository.Save();
+                People.Add(Person);
                 Person = new Person();
             }
         }
@@ -74,8 +73,8 @@ namespace StudentRecord.ViewModel
             set { person = value; RaisePropertyChanged(nameof(Person)); }
         }
 
-        private List<Address> addresses;
-        public List<Address> Addresses {
+        private ObservableCollection<Address> addresses;
+        public ObservableCollection<Address> Addresses {
             get { return addresses; }
             set { addresses = value; RaisePropertyChanged(nameof(Address)); }
         }
@@ -90,7 +89,7 @@ namespace StudentRecord.ViewModel
         }
 
         public DelegateCommand SaveCommand { get; set; }
-        public List<Person> People { get; set; }
+        public ObservableCollection<Person> People { get; set; }
 
         private ValidationResult _result;
         private PersonValidator rules;
