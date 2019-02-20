@@ -42,7 +42,7 @@ namespace StudentRecord.ViewModel
                 }
                 DisplayedError = null;
                 StudentRepository.Save();
-                People.Add(Person);
+                //People.Add(Person);
                 Person = new Person();
             }
         }

@@ -150,4 +150,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy /y "$(TargetPath)" "$(SolutionDir)PersonApplication\$(OutDir)Modules\"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

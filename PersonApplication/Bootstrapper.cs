@@ -1,9 +1,10 @@
 ﻿using System.Windows;
 using Prism.Unity;
 using Microsoft.Practices.Unity;
-using StudentRecord;
+//using StudentRecord;
 using System;
 using Data;
+using Prism.Modularity;
 
 namespace PersonApplication
 {
@@ -12,7 +13,8 @@ namespace PersonApplication
         protected override DependencyObject CreateShell()
         {
             base.CreateShell();
-            return Container.Resolve<MainWindow>();
+            Application.Current.MainWindow = Container.Resolve<MainWindow>();
+            return Application.Current.MainWindow;
         }
 
         protected override void InitializeShell()
@@ -21,12 +23,23 @@ namespace PersonApplication
             Application.Current.MainWindow.Show();
         }
 
-        protected override void ConfigureModuleCatalog()
+        protected override IModuleCatalog CreateModuleCatalog()
         {
-            base.ConfigureModuleCatalog();
-            Type reportModule = typeof(RecordModule);
-            ModuleCatalog.AddModule(new Prism.Modularity.ModuleInfo { ModuleName = reportModule.Name, ModuleType = reportModule.AssemblyQualifiedName });
+            return new DirectoryModuleCatalog
+            {
+                ModulePath = AppDomain.CurrentDomain.BaseDirectory + "Modules"
+            };
         }
+
+        //protected override void ConfigureModuleCatalog()
+        //{
+        //    base.ConfigureModuleCatalog();
+
+
+
+        //    //Type reportModule = typeof(RecordModule);
+        //    //ModuleCatalog.AddModule(new Prism.Modularity.ModuleInfo { ModuleName = reportModule.Name, ModuleType = reportModule.AssemblyQualifiedName });
+        //}
 
         protected override void ConfigureContainer()
         {
